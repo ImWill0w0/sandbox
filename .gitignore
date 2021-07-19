@@ -10,6 +10,7 @@ tools_thumbnail_cache.bin
 *.pdb
 .intermediate/net5.0/sandbox.deps.json
 maps/editor/_bakeresourcecache/toolscene_default_baked/*
+<<<<<<< Updated upstream
 *.txt
 *.exr
 *.txt
@@ -39,16 +40,33 @@ maps/_bakeresourcecache/castlewhitespire_baked/env_cubemap_36.exr
 *.sqlite
 *.tga
 *.vmat
+=======
+*.vtf
+*.vmat
+*.tga
+>>>>>>> Stashed changes
 *.ani
 *.vtx
 *.mdl
 *.vvd
 *.phy
+<<<<<<< Updated upstream
 *.vmdl
 *.dmx
 *.qc
 *.smd
+=======
+*.dmx
+*.vmdl
+*.smd
+*.qc
+models/thruster/thrusterprojector.vmdl_c
+models/thruster/thrusterprojector.vmat_c
+>>>>>>> Stashed changes
 *.vpcf
 *.wav
 *.sound
 *.mp3
+*.txt
+*.txt
+*.txt
