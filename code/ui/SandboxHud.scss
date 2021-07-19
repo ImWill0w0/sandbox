@@ -2,7 +2,7 @@ Health
 {
 	position: absolute;
 	background-color: rgba( black, 0.5 );
-	right: 100px;
+	right: 523px;
 	bottom: 48px;
 	font-size: 40px;
 	font-weight: bold;
@@ -12,32 +12,29 @@ Health
 	align-items: center;
 }
 
-CurrentTool
-{
+CurrentTool {
 	position: absolute;
-	background: linear-gradient(to right, rgba(black, 0.5), rgba(black, 0.0));
-	top: 100px;
+	background: linear-gradient(to right, rgba(white, 0.1), rgba(white, 0.0));
+	top: 50px;
 	left: 0px;
 	padding: 30px 70px;
 	flex-direction: column;
 	width: 560px;
 	opacity: 0.0;
 
-	&.active
-	{
+	&.active {
 		opacity: 1.0;
 	}
 
-	.title
-	{
+	.title {
 		font-size: 50px;
 		font-weight: bold;
 		text-shadow: 4px 4px 10px rgba( black, 0.3 );
 		color: white;
+		transform: rotate(-2deg);
 	}
 
-	.description
-	{
+	.description {
 		padding-top: 5px;
 		padding-left: 10px;
 		font-size: 18px;
@@ -47,7 +44,6 @@ CurrentTool
 		opacity: 0.8;
 	}
 }
-
 rootpanel
 {
 	background-color: rgba( #333, 0 );
@@ -79,7 +75,7 @@ InventoryBar
 InventoryIcon
 {
 	width: 80px;
-	height: 80px;
+	height: 25px;
 	background-color: rgba( #222, 0.3 );
 	margin: 0px 2px;
 	position: relative;
@@ -97,7 +93,7 @@ InventoryIcon
 		font-size: 10px;
 		position: absolute;
 		bottom: 0;
-		opacity: 0.7;
+		opacity: 0.15;
 		transition: all 0.5s ease-in-out;
 		text-shadow: 1px 1px 5px black;
 	}
@@ -118,7 +114,7 @@ InventoryIcon
 		background-color: rgba( #0094ff, 0.5 );
 		transition: all 0.1s ease-out;
 		width: 100px;
-		height: 100px;
+		height: 25px;
 
 		.slot-number
 		{

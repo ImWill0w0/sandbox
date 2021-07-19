@@ -7,7 +7,10 @@ public partial class PhysGun
 	Particles EndNoHit;
 
 	Vector3 lastBeamPos;
+	Vector3 BeamPos;
 	ModelEntity lastGrabbedEntity;
+
+	Sound? currentSound;
 
 	[Event.Frame]
 	public void OnFrame()
@@ -17,16 +20,16 @@ public partial class PhysGun
 
 	protected virtual void KillEffects()
 	{
-		Beam?.Destroy( true );
+		Beam?.Destroy(true);
 		Beam = null;
 		BeamActive = false;
 
-		EndNoHit?.Destroy( false );
+		EndNoHit?.Destroy(false);
 		EndNoHit = null;
 
-		if ( lastGrabbedEntity.IsValid() )
+		if (lastGrabbedEntity.IsValid())
 		{
-			foreach ( var child in lastGrabbedEntity.Children.OfType<ModelEntity>() )
+			foreach (var child in lastGrabbedEntity.Children.OfType<ModelEntity>())
 			{
 				if ( child is Player )
 					continue;
@@ -45,59 +48,68 @@ public partial class PhysGun
 	{
 		var owner = Owner;
 
-		if ( owner == null || !BeamActive || !IsActiveChild() )
+		if (owner == null || !BeamActive || !IsActiveChild())
 		{
 			KillEffects();
+			currentSound?.Stop();
+			currentSound = null;
 			return;
 		}
 
 		var startPos = owner.EyePos;
 		var dir = owner.EyeRot.Forward;
 
-		var tr = Trace.Ray( startPos, startPos + dir * MaxTargetDistance )
+		var tr = Trace.Ray(startPos, startPos + dir * MaxTargetDistance)
 			.UseHitboxes()
-			.Ignore( owner )
+			.Ignore(owner)
 			.Run();
 
-		if ( Beam == null )
+		if (Beam == null)
 		{
-			Beam = Particles.Create( "particles/physgun_beam.vpcf", tr.EndPos );
+			Beam = Particles.Create("particles/physgun_beam.vpcf", tr.EndPos);
+
+			//if (currentSound == null)
+			//	currentSound = Sound.FromWorld("impactloop", tr.EndPos);
+			//else
+			//	currentSound?.SetPosition(tr.EndPos);
 		}
 
-		Beam.SetEntityAttachment( 0, EffectEntity, "muzzle", true );
+		Beam.SetEntityAttachment(0, EffectEntity, "muzzle", true);
 
-		if ( GrabbedEntity.IsValid() && !GrabbedEntity.IsWorld )
+		if (GrabbedEntity.IsValid() && !GrabbedEntity.IsWorld)
 		{
 			var physGroup = GrabbedEntity.PhysicsGroup;
 
-			if ( physGroup != null && GrabbedBone >= 0 )
+			if (physGroup != null && GrabbedBone >= 0)
 			{
-				var physBody = physGroup.GetBody( GrabbedBone );
-				if ( physBody != null )
+				var physBody = physGroup.GetBody(GrabbedBone);
+				if (physBody != null)
 				{
-					Beam.SetPosition( 1, physBody.Transform.PointToWorld( GrabbedPos ) );
+					Beam.SetPosition(1, physBody.Transform.PointToWorld(GrabbedPos));
 				}
 			}
 			else
 			{
-				Beam.SetEntity( 1, GrabbedEntity, GrabbedPos, true );
+				Beam.SetEntity(1, GrabbedEntity, GrabbedPos, true);
 			}
+
+			BeamPos = GrabbedEntity.Position;
 
 			lastBeamPos = GrabbedEntity.Position + GrabbedEntity.Rotation * GrabbedPos;
 
-			EndNoHit?.Destroy( false );
+			EndNoHit?.Destroy(false);
 			EndNoHit = null;
 
-			if ( GrabbedEntity is ModelEntity modelEnt )
+			if (GrabbedEntity is ModelEntity modelEnt)
 			{
 				lastGrabbedEntity = modelEnt;
 				modelEnt.GlowState = GlowStates.GlowStateOn;
 				modelEnt.GlowDistanceStart = 0;
 				modelEnt.GlowDistanceEnd = 1000;
-				modelEnt.GlowColor = new Color( 0.1f, 1.0f, 1.0f, 1.0f );
+				modelEnt.GlowColor = new Color(0.1f, 1.0f, 1.0f, 1.0f);
 				modelEnt.GlowActive = true;
 
-				foreach ( var child in lastGrabbedEntity.Children.OfType<ModelEntity>() )
+				foreach (var child in lastGrabbedEntity.Children.OfType<ModelEntity>())
 				{
 					if ( child is Player )
 						continue;
@@ -105,7 +117,7 @@ public partial class PhysGun
 					child.GlowState = GlowStates.GlowStateOn;
 					child.GlowDistanceStart = 0;
 					child.GlowDistanceEnd = 1000;
-					child.GlowColor = new Color( 0.1f, 1.0f, 1.0f, 1.0f );
+					child.GlowColor = new Color(0.1f, 1.0f, 1.0f, 1.0f);
 					child.GlowActive = true;
 				}
 			}
@@ -113,12 +125,17 @@ public partial class PhysGun
 		else
 		{
 			lastBeamPos = tr.EndPos;// Vector3.Lerp( lastBeamPos, tr.EndPos, Time.Delta * 10 );
-			Beam.SetPosition( 1, lastBeamPos );
+			Beam.SetPosition(1, lastBeamPos);
 
-			if ( EndNoHit == null )
-				EndNoHit = Particles.Create( "particles/physgun_end_nohit.vpcf", lastBeamPos );
+			if (EndNoHit == null)
+				EndNoHit = Particles.Create("particles/physgun_end_nohit_new.vpcf", lastBeamPos);
 
-			EndNoHit.SetPosition( 0, lastBeamPos );
+			//if (currentSound == null)
+			//	currentSound = Sound.FromWorld("impactloop", lastBeamPos);
+			//else
+			//	currentSound?.SetPosition(lastBeamPos);
+
+			EndNoHit.SetPosition(0, lastBeamPos);
 		}
 	}
 }
