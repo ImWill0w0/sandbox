@@ -1,4 +1,6 @@
 ﻿using Sandbox;
+using System;
+using System.Linq;
 
 partial class SandboxPlayer
 {
@@ -10,6 +12,8 @@ partial class SandboxPlayer
 		ent.Rotation = Rotation;
 		ent.Scale = Scale;
 		ent.MoveType = MoveType.Physics;
+		Sound.FromEntity("kersplat", this);
+		Particles.Create("particles/blood.vpcf", this, "forward_reference_modelspace");
 		ent.UsePhysicsCollision = true;
 		ent.EnableAllCollisions = true;
 		ent.CollisionGroup = CollisionGroup.Debris;
@@ -77,9 +81,5 @@ partial class SandboxPlayer
 				ent.PhysicsGroup.AddAngularVelocity( angularDir * (force.Length * 0.02f) );
 			}
 		}
-
-		Corpse = ent;
-
-		ent.DeleteAsync( 10.0f );
 	}
 }

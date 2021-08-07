@@ -28,6 +28,12 @@ public partial class SpawnMenu : Panel
 				var props = body.AddChild<SpawnList>();
 				tabs.SelectedButton = tabs.AddButtonActive( "Props", ( b ) => props.SetClass( "active", b ) );
 
+				var rustprops = body.AddChild<RustList>();
+				tabs.AddButtonActive("Rust Props", (b) => rustprops.SetClass("active", b));
+
+				var wep = body.AddChild<WeaponList>();
+				tabs.AddButtonActive("Weapons", (b) => wep.SetClass("active", b));
+
 				var ents = body.AddChild<EntityList>();
 				tabs.AddButtonActive( "Entities", ( b ) => ents.SetClass( "active", b ) );
 			}

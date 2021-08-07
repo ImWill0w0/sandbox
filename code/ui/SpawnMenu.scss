@@ -11,12 +11,23 @@
     position: absolute;
     font-family: poppins;
     opacity: 0;
+    //backdrop-filter: blur(25px);
+    background-color: #b6b6b6, .15;
+    //border: 3px solid #423f40;
+    padding-left: 7.5px;
+    padding-top: 7.5px;
+    padding-bottom: 5px;
+    padding-right: 7.5px;
 
     .tabs {
         font-size: 16px;
         flex-shrink: 0;
         margin-bottom: 4px;
         padding-left: 10px;
+        background-color: rgba( #3472e6, 0.15 );
+        border-radius: 5px;
+        //border: 3px solid rgba(#423f40, 0.815);
+        backdrop-filter: blur(25px);
 
         button {
             padding: 6px 5px;
@@ -29,7 +40,7 @@
             cursor: pointer;
             //border-radius: 5px;
             label {
-                text-shadow: 1px 1px 4px rgba( black, 0.2 );
+                text-shadow: 1px 1px 1px rgba( black, 1 );
             }
 
             &:hover {
@@ -54,11 +65,16 @@
         transition: all 0.3s ease-in;
 
         .body {
-            border-radius: 10px;
-            background-color: rgba( #111, 0.7 );
+            border-radius: 5px;
+            //background-color: rgba( #111, 0.7 );
+            //background-image: linear-gradient(45deg, rgba(87, 87, 87, 0.1), rgba(#329ce3,0.5));
             flex-grow: 1;
+            backdrop-filter: blur(25px);
+            background-color: rgba( #111, 0.25 );
+            //border: 3px solid rgba(87, 87, 87, 0.815);
         }
     }
+
 
     .right {
         margin-left: 10px;
@@ -71,9 +87,11 @@
         .body {
             //	background-color: rgba( #333, 0.95 );
             flex-grow: 1;
-            border-radius: 10px;
-            background-color: rgba( #111, 0.7 );
+            border-radius: 5px;
+            background-color: rgba( #111, 0.25 );
             padding: 10px;
+            backdrop-filter: blur(25px);
+            //border: 3px solid rgba(87, 87, 87, 0.815);
 
 
             .toollist {
@@ -82,10 +100,11 @@
                 color: #aaa;
 
                 button {
-                    padding: 3px 10px;
+                    padding: 1px 10px;
                     font-size: 11px;
                     transition: all 0.2s ease-out;
                     cursor: pointer;
+                    text-shadow: 1px 1px 2px rgba( black, 1 );
 
                     &:hover {
                         //border-left: 3px solid #3273eb;
@@ -111,7 +130,7 @@
 
 
 .spawnmenuopen spawnmenu {
-    transition: all 0.2s ease-out;
+    transition: all 0.1s ease-out;
     pointer-events: all;
     opacity: 1;
     transform: scale( 1 );
@@ -136,38 +155,44 @@
         flex-grow: 1;
         flex-wrap: wrap;
         justify-content: space-between;
-        margin: 10px;
         border-radius: 5px;
+        //border: 3px solid rgba(87, 87, 87, 0.815);
 
         .cell {
-            padding: 5px;
+            padding: 1px;
+            padding-top: 4.5px;
         }
 
         .icon {
-            border-radius: 16px;
+            border-radius: 5px;
             color: rgba( #fff, 0.5 );
             font-size: 12px;
             text-align: center;
             cursor: pointer;
-            width: 100%;
-            height: 100%;
+            width: 95%;
+            height: 95%;
             background-position: center;
             background-size: cover;
             background-color: rgba(black, 0.1);
             background-image: url( /entity/spawnicon.png );
+            //border: 3px solid rgba(87, 87, 87, 0.815);
 
             label {
-                font-size: 9px;
+                font-size: 10px;
                 position: absolute;
                 bottom: -17px;
                 left: 0;
                 right: 0;
                 pointer-events: none;
+                text-shadow: 1px 1px 1px rgba( black, 0.5 );
             }
 
             &:hover {
                 color: #fff;
                 background-color: rgba(black, 0.4);
+                border: 3px solid rgba(150, 150, 150, 0.815);
+                width: 100%;
+                height: 100%;
             }
 
             &:active {

@@ -138,6 +138,8 @@ partial class SandboxPlayer : Player
 			ActiveChild = Input.ActiveChild;
 		}
 
+		SimulateActiveChild(cl, ActiveChild);
+
 		if ( LifeState != LifeState.Alive )
 			return;
 

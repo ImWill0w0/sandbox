@@ -3,11 +3,11 @@ using Sandbox.UI;
 using Sandbox.UI.Tests;
 
 [Library]
-public partial class SpawnList : Panel
+public partial class RustList : Panel
 {
 	VirtualScrollPanel Canvas;
 
-	public SpawnList()
+	public RustList()
 	{
 		AddClass( "spawnpage" );
 		AddChild( out Canvas, "canvas" );
@@ -30,7 +30,9 @@ public partial class SpawnList : Panel
 			if ( string.IsNullOrWhiteSpace( file ) ) continue;
 			if ( file.Contains( "_lod0" ) ) continue;
 			if ( file.Contains( "clothes" ) ) continue;
-			if (file.Contains("rust")) continue;
+			if (file.Contains("sbox_props")) continue;
+			if (file.Contains("entity")) continue;
+			if (file.Contains("citizen_props")) continue;
 
 			Canvas.AddItem( file.Remove( file.Length - 6 ) );
 		}

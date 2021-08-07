@@ -35,6 +35,7 @@ partial class WillowBox : Game
 	[ServerCmd( "spawn" )]
 	public static void Spawn( string modelname )
 	{
+		Sound.FromScreen("ui_click");
 		var owner = ConsoleSystem.Caller?.Pawn;
 
 		if ( ConsoleSystem.Caller == null )
@@ -46,10 +47,12 @@ partial class WillowBox : Game
 			.Size( 2 )
 			.Run();
 
+
 		var ent = new Prop();
 		ent.Position = tr.EndPos;
 		ent.Rotation = Rotation.From( new Angles( 0, owner.EyeRot.Angles().yaw, 0 ) ) * Rotation.FromAxis( Vector3.Up, 180 );
 		ent.SetModel( modelname );
+		//ent.PhysicsGroup.Physics;
 
 		// Drop to floor
 		if ( ent.PhysicsBody != null && ent.PhysicsGroup.BodyCount == 1 )
@@ -66,6 +69,7 @@ partial class WillowBox : Game
 	[ServerCmd( "spawn_entity" )]
 	public static void SpawnEntity( string entName )
 	{
+		Sound.FromScreen("ui_click");
 		var owner = ConsoleSystem.Caller.Pawn;
 
 		if ( owner == null )
@@ -86,11 +90,13 @@ partial class WillowBox : Game
 		if ( ent is BaseCarriable && owner.Inventory != null )
 		{
 			if ( owner.Inventory.Add( ent, true ) )
-				return;
+				Sound.FromScreen("ammo_pickup");
+			return;
 		}
 
 		ent.Position = tr.EndPos;
 		ent.Rotation = Rotation.From( new Angles( 0, owner.EyeRot.Angles().yaw, 0 ) );
+
 
 		//Log.Info( $"ent: {ent}" );
 	}

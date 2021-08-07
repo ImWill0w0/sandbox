@@ -1,15 +1,18 @@
-Health
-{
+Health {
 	position: absolute;
-	background-color: rgba( black, 0.5 );
-	right: 523px;
+	background-color: rgba( #0094ff, 0.15 );
+	right: 462px;
 	bottom: 48px;
-	font-size: 40px;
+	font-size: 20px;
 	font-weight: bold;
 	color: white;
-	height: 80px;
-	padding: 0 20px;
+	height: 25px;
+	width: 90px;
 	align-items: center;
+	text-align: center;
+	border-radius: 5px;
+	padding-left: 25px;
+	text-shadow: 1px 1px 1px black;
 }
 
 CurrentTool {
@@ -52,7 +55,7 @@ rootpanel
 	&.spawnmenuopen
 	{
 		transition: background-color 0.3s ease-out;
-		background-color: rgba( #333, 0.9 );
+		background-color: rgba( #333, 0 );
 	}
 
 
@@ -72,9 +75,8 @@ InventoryBar
 	align-items: flex-end;
 }
 
-InventoryIcon
-{
-	width: 80px;
+InventoryIcon {
+	width: 90px;
 	height: 25px;
 	background-color: rgba( #222, 0.3 );
 	margin: 0px 2px;
@@ -82,9 +84,10 @@ InventoryIcon
 	transition: all 0.2s ease-in-out;
 	margin-top: 10px;
 	font-family: poppins;
+	border-radius: 5px;
+	backdrop-filter: blur(25px);
 
-	.item-name
-	{
+	.item-name {
 		padding: 5px;
 		color: white;
 		text-align: center;
@@ -95,12 +98,11 @@ InventoryIcon
 		bottom: 0;
 		opacity: 0.15;
 		transition: all 0.5s ease-in-out;
-		text-shadow: 1px 1px 5px black;
+		text-shadow: 1px 1px 1px black;
 	}
 
-	.slot-number
-	{
-		font-size: 25px;
+	.slot-number {
+		font-size: 20px;
 		color: black;
 		font-weight: 900;
 		opacity: 0.3;
@@ -109,23 +111,21 @@ InventoryIcon
 		right: 5px;
 	}
 
-	&.active
-	{
+	&.active {
 		background-color: rgba( #0094ff, 0.5 );
 		transition: all 0.1s ease-out;
-		width: 100px;
+		//width: 100px;
 		height: 25px;
+		border-radius: 5px;
 
-		.slot-number
-		{
+		.slot-number {
 			color: #275576;
 		}
 
-		.item-name
-		{
+		.item-name {
 			opacity: 1;
 			transition: all 0.1s ease-out;
-			font-size: 13px;
+			font-size: 12px;
 		}
 	}
 }

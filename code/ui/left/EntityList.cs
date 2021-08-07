@@ -32,6 +32,7 @@ public partial class EntityList : Panel
 
 		foreach ( var entry in ents )
 		{
+			if ((entry.Name).StartsWith("weapon_")) { continue; }
 			Canvas.AddItem( entry );
 		}
 	}
