@@ -1,6 +1,6 @@
 ﻿using Sandbox;
 
-[Library( "weapon_pistol", Title = "Pistol", Spawnable = true )]
+[Library("weapon_pistol", Title = "Pistol", Spawnable = true)]
 partial class Pistol : Weapon
 {
 	public override string ViewModelPath => "weapons/rust_pistol/v_rust_pistol.vmdl";
@@ -14,24 +14,24 @@ partial class Pistol : Weapon
 	{
 		base.Spawn();
 
-		SetModel( "weapons/rust_pistol/rust_pistol.vmdl" );
+		SetModel("weapons/rust_pistol/rust_pistol.vmdl");
 	}
 
 	public override bool CanPrimaryAttack()
 	{
-		return base.CanPrimaryAttack() && Input.Pressed( InputButton.Attack1 );
+		return base.CanPrimaryAttack() && Input.Pressed(InputButton.Attack1);
 	}
 
 	public override void AttackPrimary()
 	{
 		TimeSincePrimaryAttack = 0;
 		TimeSinceSecondaryAttack = 0;
-		
-		(Owner as AnimEntity)?.SetAnimBool( "b_attack", true );
+
+		(Owner as AnimEntity)?.SetAnimBool("b_attack", true);
 
 		ShootEffects();
-		PlaySound( "rust_pistol.shoot" );
-		ShootBullet( 0.05f, 1.5f, 9.0f, 3.0f );
+		PlaySound("rust_pistol.shoot");
+		ShootBullet(0.05f, 1.5f, 9.0f, 3.0f);
 	}
 
 	private void Discharge()

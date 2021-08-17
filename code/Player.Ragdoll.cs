@@ -81,5 +81,9 @@ partial class SandboxPlayer
 				ent.PhysicsGroup.AddAngularVelocity( angularDir * (force.Length * 0.02f) );
 			}
 		}
+
+		Corpse = ent;
+
+		ent.DeleteAsync(10.0f);
 	}
 }

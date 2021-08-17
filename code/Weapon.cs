@@ -132,7 +132,7 @@ public partial class Weapon : BaseWeapon, IUse
 	{
 		Host.AssertClient();
 
-		Particles.Create( "particles/pistol_muzzleflash.vpcf", EffectEntity, "muzzle" );
+		Particles.Create( "particles/toon_muzzleflash.vpcf", EffectEntity, "muzzle" );
 
 		if ( IsLocalPawn )
 		{
